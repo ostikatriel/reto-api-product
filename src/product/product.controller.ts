@@ -27,7 +27,7 @@ export class ProductContoller {
   }
 
   @Delete(':sku')
-  delete(@Param() sku: string) {
+  delete(@Param('sku') sku: string) {
     return this.service.delete(sku);
   }
 
