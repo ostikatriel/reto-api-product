@@ -31,9 +31,14 @@ export class ProductService {
   }
 
   findAll(category: string, status: string) {
-    const products = Array.from(this.products.values())
-    if (category) products.filter(product => product.category === category)
-    if (status) products.filter(product => product.status === status)
+    let products = Array.from(this.products.values())
+    if (category) {
+      products = products.filter(product => product.category === category)
+    }
+
+    if (status) {
+      products = products.filter(product => product.status === status)
+    }
     return products
   }
 
@@ -49,8 +54,7 @@ export class ProductService {
   }
 
   delete(sku: string) {
-    const product = this.products.get(sku);
-    console.log("🚀 ~ ProductService ~ delete ~ product:", product)
+    const product = this.products.has(sku);
     if (!product) throw new NotFoundException('Producto no encontrado');
     this.products.delete(sku);
     return product;
