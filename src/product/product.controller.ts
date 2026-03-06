@@ -22,7 +22,7 @@ export class ProductContoller {
   }
 
   @Patch(':sku/stock')
-  changeStock(@Param() sku: string, @Body() dto: UpdateStockDto) {
+  changeStock(@Param('sku') sku: string, @Body() dto: UpdateStockDto) {
     return this.service.changeStock(sku, dto.quantity);
   }
 
