@@ -1,5 +1,5 @@
 
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dtos/create-product.dto';
 
@@ -11,6 +11,9 @@ export class ProductService {
 
   create(dto: CreateProductDto) {
 
+    if (this.products.has(dto.sku)) {
+      throw new BadRequestException('SKU already exists');
+    }
     const product: Product = {
       id: this.id_increment++,
       sku: dto.sku,
