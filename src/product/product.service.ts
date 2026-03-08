@@ -34,7 +34,8 @@ export class ProductService {
   }
 
   findAll(category: string, status: string) {
-    let products = Array.from(this.products.values())
+    let products = [...this.products.values()]
+
     if (category) {
       products = products.filter(product => product.category === category)
     }
