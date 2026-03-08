@@ -6,7 +6,7 @@ import { CreateProductDto } from './dtos/create-product.dto';
 @Injectable()
 export class ProductService {
 
-  private products = new Map<string, Product>();
+  private readonly products = new Map<string, Product>();
   private id_increment = 1;
 
   create(dto: CreateProductDto) {
