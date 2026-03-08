@@ -57,9 +57,9 @@ export class ProductService {
   }
 
   delete(sku: string) {
-    const product = this.products.has(sku);
-    if (!product) throw new NotFoundException('Producto no encontrado');
+    const exists = this.products.has(sku);
+    if (!exists) throw new NotFoundException('Producto no encontrado');
     this.products.delete(sku);
-    return product;
+    return { message: `Producto eliminado` };
   }
 }
